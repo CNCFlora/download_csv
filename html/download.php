@@ -36,6 +36,11 @@ foreach($json_query->filter as $filter)
 $index = $json_query->index;
 $columns = $doc->columns;
 
+//Change to * if all columns
+if (current($columns) === '_source'){
+    $columns = array('*');
+}
+
 // Construct bool query
 $query = (object) ['query' => (object) [
                         'filtered' => (object) [
@@ -44,7 +49,7 @@ $query = (object) ['query' => (object) [
                             ],
                         ]
                     ],
-                    'fields' => $columns
+                    'fields' =>  array('*')
                 ];
 //Adding queries
 foreach ($query_must as $filter){
@@ -56,16 +61,18 @@ foreach ($query_must_not as $filter){
 
 $result = search_post(ELASTICSEARCH, $index, $query);
 $csv_array = array();
+$header = array();
 
 foreach($result as $doc){
     //Create result array
     $row_array = array();
+    if (current($columns) === '*') {
+        $columns = array_keys(get_object_vars($doc));
+        //$columns = array_diff($columns, array('_id'));
+    }
     foreach ($columns as $field) {
-        //TODO: iterate over all columns
-        //if ($field === '_source') {
-        //}
         if (property_exists($doc, $field)){
-            $row_array[] = current($doc->$field);
+            $row_array[] = implode(';', $doc->$field);
         }
         else {
             $row_array[] = '';
@@ -73,4 +80,6 @@ foreach($result as $doc){
     }
     $csv_array[] = $row_array;
 }
+//Add header as first row
+array_unshift($csv_array, $columns);
 convert_to_csv($csv_array, 'report.csv', ',');

@@ -38,7 +38,7 @@ function search($es,$db,$idx,$q) {
   $arr =array();
   foreach($r->hits->hits as $hit) {
       $doc = $hit->_source;
-      $doc->_id = $hit->_id;
+      //$doc->_id = $hit->_id;
       //$doc->_rev = $doc->rev;
       //unset($doc->id);
       //unset($doc->rev);
@@ -53,7 +53,7 @@ function es_get($es, $db, $type, $idx){
     $r = http_get($url);
 
     $doc = $r->_source;
-    $doc->_id = $r->_id;
+    //$doc->_id = $r->_id;
     return $doc;
 
 }
@@ -77,12 +77,7 @@ function search_post($es, $db, $data){
     foreach($r->hits->hits as $hit) {
         if (property_exists($hit, 'fields')){
             $doc = $hit->fields;
-            $doc->_id = $hit->_id;
-            $arr[] = $doc;
-        }
-        elseif (property_exists($hit, '_source')){
-            $doc = $hit->_source;
-            $doc->_id = $hit->_id;
+            //$doc->_id = $hit->_id;
             $arr[] = $doc;
         }
     }

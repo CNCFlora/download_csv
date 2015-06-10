@@ -25,4 +25,4 @@ production:
   elasticsearch: 'http://cncflora.jbrj.gov.br/elasticsearch'
   connect: 'http://cncflora.jbrj.gov.br/connect'
   connect_url: 'http://cncflora.jbrj.gov.br/connect'
-  base: "/download_csv""
+  base: "/download_csv"
