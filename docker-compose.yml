@@ -1,0 +1,26 @@
+apache:
+    image: cncflora/apache
+    ports:
+        - 8080:80
+    volumes:
+        - ./html:/var/www
+    links:
+        - elasticsearch:elasticsearch
+    environment:
+        - PHP_ENV=development
+elasticsearch:
+    image: cncflora/elasticsearch
+    name: elasticsearch
+    restart: "always"
+    ports:
+        - "9200:9200"
+    volumes:
+        - "/var/data/elasticsearch/data:/usr/share/elasticsearch/data:rw"
+kibana:
+    image: cncflora/kibana
+    name: kibana
+    restart: "always"
+    ports:
+        - "8001:80"
+    links:
+        - "elasticsearch:elasticsearch"
