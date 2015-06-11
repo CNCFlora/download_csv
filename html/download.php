@@ -13,6 +13,14 @@ $query_base = $doc->kibanaSavedObjectMeta->searchSourceJSON;
 $json_query = json_decode($query_base);
 $query_must = array();
 $query_must_not = array();
+
+if (property_exists($json_query, 'query')){
+    $query_string = $json_query->query;
+}
+else {
+    $query_string = (object) [ 'match_all' => (object)[]];
+}
+
 foreach($json_query->filter as $filter)
     if (!is_null($filter)) {
         //Skip filter if it is disabled
@@ -43,14 +51,12 @@ if (current($columns) === '_source'){
 
 // Construct bool query
 $query = (object) ['query' => (object) [
-                        'filtered' => (object) [
-                            'query' => (object) [
-                                'match_all' => (object)[]
-                            ],
-                        ]
-                    ],
+                     'filtered' => (object)[
+                        'query' => $query_string
+                     ]
+                   ],
                     'fields' =>  array('*')
-                ];
+                  ];
 //Adding queries
 foreach ($query_must as $filter){
     $query->query->filtered->filter->bool->must[] = $filter;

@@ -9,9 +9,9 @@ test:
   connect_url: 'http://localhost:8080'
   base: ""
 homolog:
-  elasticsearch: 'http://$HOST/elasticsearch'
-  connect: 'http://$HOST/connect'
-  connect_url: 'http://$HOST/connect'
+  elasticsearch: 'http://jb048.jbrj.gov.br/elasticsearch'
+  connect: 'http://jb048.jbrj.gov.br/connect'
+  connect_url: 'http://jb048.jbrj.gov.br/connect'
   base: "/download_csv"
 production:
   elasticsearch: 'http://cncflora.jbrj.gov.br/elasticsearch'
