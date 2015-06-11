@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <!--<script src="<?php echo CONNECT_URL ?>/js/connect.js"></script>-->
+  <script src="<?php echo CONNECT_URL ?>/js/connect.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
     var elasticsearch = '<?php echo ELASTICSEARCH?>';

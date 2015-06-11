@@ -1,7 +1,7 @@
 apache:
     image: cncflora/apache
     ports:
-        - 8080:80
+        - 8081:80
     volumes:
         - ./html:/var/www
     links:
@@ -24,3 +24,11 @@ kibana:
         - "8001:80"
     links:
         - "elasticsearch:elasticsearch"
+connect:
+    image: cncflora/connect
+    name: connect
+    restart: "always"
+    ports:
+        - "8080:80"
+    volumes:
+        - "/var/data/connect:/var/floraconnect:rw"

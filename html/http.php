@@ -38,7 +38,7 @@ function search($es,$db,$idx,$q) {
   $arr =array();
   foreach($r->hits->hits as $hit) {
       $doc = $hit->_source;
-      //$doc->_id = $hit->_id;
+      $doc->_id = $hit->_id;
       //$doc->_rev = $doc->rev;
       //unset($doc->id);
       //unset($doc->rev);
