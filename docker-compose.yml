@@ -6,6 +6,7 @@ apache:
         - ./html:/var/www
     links:
         - elasticsearch:elasticsearch
+        - connect:connect
     environment:
         - PHP_ENV=development
 elasticsearch:

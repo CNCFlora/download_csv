@@ -1,11 +1,11 @@
 development:
-  elasticsearch: 'http://localhost:9200'
-  connect: 'http://localhost:8080'
+  elasticsearch: 'http://elasticsearch:9200'
+  connect: 'http://connect:8080'
   connect_url: 'http://localhost:8080'
   base: ""
 test:
-  elasticsearch: 'http://localhost:9200'
-  connect: 'http://localhost:8080'
+  elasticsearch: 'http://elasticsearch:9200'
+  connect: 'http://connect:8080'
   connect_url: 'http://localhost:8080'
   base: ""
 homolog:
