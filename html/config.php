@@ -4,6 +4,7 @@ include_once __DIR__.'/../vendor/autoload.php';
 
 use Symfony\Component\Yaml\Yaml;
 $raw = Yaml::parse(file_get_contents(__DIR__."/../config.yml"));
+$data = [];
 
 $env = getenv("PHP_ENV");
 if($env == null) {
@@ -21,17 +22,18 @@ $data["PHP_ENV"] = $env;
 $array = $raw[$env];
 
 foreach($array as $key=>$value) {
-    preg_match_all('/\$([a-zA-Z]+)/',$value,$reg);
+    preg_match_all('/\\$([a-zA-Z_]+)/',$value,$reg);
     if(count($reg[0]) >= 1) {
       $e = getenv($reg[1][0]);
-      $data[strtoupper($key)] = str_replace($reg[0][0],$e,$value);
+      $data[$key] = str_replace($reg[0][0],$e,$value);
     } else {
-      $data[strtoupper($key)] = $value;
+      $data[$key] = $value;
     }
 }
 
-foreach($array as $k=>$v) {
+foreach($data as $k=>$v) {
   if(!defined(strtoupper($k))) {
     define(strtoupper($k),$v);
   }
 }
+
