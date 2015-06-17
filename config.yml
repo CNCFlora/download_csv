@@ -1,0 +1,15 @@
+development:
+  elasticsearch: 'http://elasticsearch:9200'
+  connect: 'http://connect:8080'
+  connect_url: 'http://localhost:8080'
+  base: ""
+test:
+  elasticsearch: 'http://elasticsearch:9200'
+  connect: 'http://connect:8080'
+  connect_url: 'http://localhost:8080'
+  base: ""
+production:
+  elasticsearch: 'http://$HOST/elasticsearch'
+  connect: 'http://$HOST/connect'
+  connect_url: 'http://$HOST/connect'
+  base: "/download_csv"

@@ -1,7 +1,4 @@
 {
-    "config": {
-        "vendor-dir": "html/vendor"
-    },
     "require": {
         "symfony/yaml": "2.5.*@dev"
     }

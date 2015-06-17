@@ -3,7 +3,7 @@ apache:
     ports:
         - 8081:80
     volumes:
-        - ./html:/var/www
+        - .:/var/www
     links:
         - elasticsearch:elasticsearch
         - connect:connect
