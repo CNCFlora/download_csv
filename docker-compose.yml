@@ -12,7 +12,6 @@ apache:
 elasticsearch:
     image: cncflora/elasticsearch
     name: elasticsearch
-    restart: "always"
     ports:
         - "9200:9200"
     volumes:
@@ -20,7 +19,6 @@ elasticsearch:
 kibana:
     image: cncflora/kibana
     name: kibana
-    restart: "always"
     ports:
         - "8001:80"
     links:
@@ -28,7 +26,6 @@ kibana:
 connect:
     image: cncflora/connect
     name: connect
-    restart: "always"
     ports:
         - "8080:80"
     volumes:
