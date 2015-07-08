@@ -45,11 +45,23 @@ window.onload = function() {
     //$("#login-bt").hide();
     //$("#logout-bt").show();
     //$("#app").show();
+    $( "#src" ).change(function() {
+        // Construct download URL
+        msg = location.protocol + "//" + window.location.host + "/" + $("#app").attr('action') + "?" + $("#src").attr('name') + "=" + $("#src").val();
+        // Set message
+        $("a#link_msg").attr("href", msg);
+        $("a#link_msg").text(msg);
+
+        // Show message
+        $("#msg").show();
+    })
 
     $.getJSON("complete.php", function (data) {
         for(var d=0;d<data.length;d++) {
-            console.log(data)
             $("#src").append("<option value='"+data[d]._id+"'>"+data[d].title.toUpperCase().replace("_"," ")+"</option>");
+            if (d==0) {
+                $("#src").val(data[d]._id).trigger('change');
+            }
         }}).fail(function(jqxhr, textStatus, error) {
             var err = textStatus + ", " + error;
             console.log( "Request Failed: " + err );

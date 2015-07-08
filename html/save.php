@@ -12,7 +12,7 @@ function convert_to_csv($input_array, $output_file_name, $delimiter)
     fseek($temp_memory, 0);
     /** modify header to be downloadable csv file **/
     header('Content-Type: application/csv');
-    header('Content-Disposition: attachement; filename="' . $output_file_name . '";');
+    header('Content-Disposition: attachment; filename="' . $output_file_name . '";');
     /** Send file to browser for download */
     fpassthru($temp_memory);
 }

@@ -4,7 +4,7 @@ include 'config.php';
 include 'http.php';
 include 'save.php';
 
-$src = $_POST["src"];
+$src = $_GET["consulta"];
 
 $doc = es_get(ELASTICSEARCH,".kibana", "search", $src);
 

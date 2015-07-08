@@ -22,25 +22,27 @@
 </head>
 <body>
   <div class="container">
+    <div class="row">
         <h2>Download de buscas em CSV</h2>
-    <?php if( isset($_GET["msg"]) ): ?>
-      <p class="msg label label-success"><?php echo $_GET["msg"] ;?></p>
-    <?php endif;?>
-    <form id="login">
-      <div class='form-group'>
-        <button id="login-bt" class='btn btn-primary'>Login</button>
-        <button id="logout-bt" class='btn btn-primary'>Logout</button>
-      </div>
-    </form>
-    <form action="download.php" method="POST" id="app">
-      <fieldset class=''>
-        <div class="form-group">
-          <label for="src">Buscas disponíveis</label>
-          <select id="src" name="src" class='form-control'></select>
-        </div>
-        <p><button class='btn btn-primary'>Baixar CSV</button></p>
-      </fieldset>
-    </form>
+        <form id="login">
+          <div class='form-group'>
+            <button id="login-bt" class='btn btn-primary'>Login</button>
+            <button id="logout-bt" class='btn btn-primary'>Logout</button>
+          </div>
+        </form>
+    </div>
+    <div class="row">
+        <form action="download.php" method="GET" id="app">
+          <fieldset class=''>
+            <div class="form-group">
+              <label for="src">Buscas disponíveis</label>
+              <select id="src" name="consulta" class='form-control'></select>
+            </div>
+            <p class="msg alert alert-warning" id="msg" style="display:none">Faça o download direto dessa consulta pelo link: <a id="link_msg"></a></p>
+            <p><button class='btn btn-primary'>Baixar CSV</button></p>
+          </fieldset>
+        </form>
+    </div>
   </div>
 </body>
 </html>
