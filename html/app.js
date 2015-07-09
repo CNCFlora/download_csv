@@ -47,7 +47,8 @@ window.onload = function() {
     //$("#app").show();
     $( "#src" ).change(function() {
         // Construct download URL
-        msg = location.protocol + "//" + window.location.host + "/" + $("#app").attr('action') + "?" + $("#src").attr('name') + "=" + $("#src").val();
+        console.log(window.location.pathname);
+        msg = window.location.protocol + "//" + window.location.host + window.location.pathname + $("#app").attr('action') + "?" + $("#src").attr('name') + "=" + $("#src").val();
         // Set message
         $("a#link_msg").attr("href", msg);
         $("a#link_msg").text(msg);
