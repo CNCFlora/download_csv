@@ -75,11 +75,19 @@ function search_post($es, $db, $data){
     $arr =array();
 
     foreach($r->hits->hits as $hit) {
+        // Get doc fields
         if (property_exists($hit, 'fields')){
             $doc = $hit->fields;
-            //$doc->_id = $hit->_id;
-            $arr[] = $doc;
         }
+
+        // Get fields outside "fields" (starting with _)
+        $doc_all = clone $hit;
+        unset($doc_all->fields);
+        $props = get_object_vars($doc_all);
+        foreach($props as $prop => $defaultValue) {
+            $doc->$prop = array($defaultValue);
+        }
+        $arr[] = $doc;
     }
 
     return $arr;
